@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 import CartWidget from "./CartWidget";
 
 const Navbar = () => {
@@ -11,15 +12,18 @@ const Navbar = () => {
               <img src="LogoMain.png" className="responsive" alt="logo"></img>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="index.html"><h1 className="text-dark">White Horse comics</h1></a>
+                <Link className="nav-link active" aria-current="page" to={"/"}><h1 className="text-dark">White Horse comics</h1></Link>
               </li>
             </ul>
             <ul className="nav d-flex flex-row">
-              <li className="nav-item">
-                <a className="nav-link text-dark" href="index.html"><h3>Comics</h3></a>
+            <li className="nav-item">
+                <NavLink className="nav-link text-dark" activeclassname="page" to={"/category/Marvel"}><h3>Marvel</h3></NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link text-dark" href="index.html"><h3>Manga</h3></a>
+                <NavLink className="nav-link text-dark" activeclassname="page" to={"/category/DcComics"}><h3>DcComics</h3></NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link text-dark" activeclassname="page" to={"/category/Manga"}><h3>Manga</h3></NavLink>
               </li>
               <CartWidget />
             </ul>

@@ -30,11 +30,12 @@ code {
   font-family: "copperplate", fantasy;
 }
 
-.product{
-  width:300px;
+.producto{
+  width:200px;
 }
 
 .productImg{
-  width:  300px;
-  height: 430px;
+  width:  200px;
+  height: 300px;
+  margin-left: 15%;
 }
