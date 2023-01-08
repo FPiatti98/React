@@ -1,3 +1,50 @@
+Descripcion de los componentes
+
+-App
+Se encarga del montaje general del sitio web.
+
+-Cart
+Se encarga del montaje del carrito.
+
+-CartWidget
+Se encarga de mostrar el icono del carrito en el navbar y actualizarlo cada vez que se agrega un producto.
+
+-Checkout
+Se encarga del montaje del formulario de contacto del usuario y del detalle de la compra. Guarda los productos seleccionados y genera la orden para luego vaciar el carrito.
+
+-EndOfPurchase
+Se encarga de mostrar al usuario su numero de orden y un saludo.
+
+-Error404
+Sen encarga de mostrar un mensaje si la ruta es inexistente.
+
+-Footer
+Sen encarga del montaje del footer.
+
+-item
+Se encarga del montaje de cada item dentro de itemlist.
+
+-ItemCount
+Se encarga de montar el contador para la seleccion de la cantidad del producto y a la vez de agregar esa cantidad al cart.
+
+-ItemDetail
+Se encarga de montar el detalle del producto.
+
+-ItemDetailContainer
+Es el contenedor de ItemDetail y a la vez realiza la peticion a FireStore.
+
+-ItemList
+Es el contenedor de cada Item.
+
+-ItemListContainer
+Es el contenedor de ItemList y a la vez realiza la peticion a FireStore.
+
+-Navbar
+Se encarga del montaje del navbar.
+
+-Spinner
+Se encarga del montaje del spinner.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

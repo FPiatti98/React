@@ -1,27 +1,35 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect , useState } from "react";
 import { useParams } from "react-router-dom";
-import { products } from "../data/prodlist";
-import { promesa } from "../data/promise";
 import ItemList from "./ItemList";
+import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
+import Spinner from "./Spinner";
+
 
 const ItemListContainer = () => {
 
+    //Esta funcion se encarga de realizar la peticion a firestore y del montaje de ItemDetail
+
     const [prodlist, setprodlist] = useState([]);
     const {id} = useParams();
+    const [spinner, setSpinner] = useState(true);
 
     useEffect(() => {
-        promesa(id ? products.filter(product => product.category === id) : products)
-            .then(res => {
-                setprodlist(res)
-            })
-    }, [id]) 
+        const db = getFirestore();
+        const prodCollection = collection(db, "products");
+
+        const q = id ? query(prodCollection, where("category", "==", id)) : prodCollection;
+        
+        getDocs(q).then((snapShot) => {
+            setprodlist(snapShot.docs.map((doc) => ({id:doc.id, ...doc.data()})
+            ));
+            setSpinner(false);
+        });
+    }, [id]);
 
     return (
         <div>
-            <h1>Todos los productos</h1>
-            <ItemList prodlist={prodlist}/>
+            <h1 className="my-5 m-3 text-light">Productos</h1>
+            {spinner ? <Spinner /> : <ItemList prodlist={prodlist}/>}
         </div>
     )
 }

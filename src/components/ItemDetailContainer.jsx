@@ -1,26 +1,33 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect , useState } from "react";
 import { useParams } from "react-router-dom";
-import { products } from "../data/prodlist";
-import { promesa } from "../data/promise";
 import ItemDetail from "./ItemDetail";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
+import Spinner from "./Spinner";
 
 const ItemDetailContainer = () => {
 
-    const [item, setitem] = useState("");
+    //Esta funcion se encarga de realizar la peticion a firestore y del montaje de ItemDetail
+
+    const [item, setItem] = useState([]);
     const {id} = useParams();
+    const [spinner, setSpinner] = useState(true);
 
     useEffect(() => {
-        promesa(products.find(item => item.id === parseInt(id)))
-            .then(res => {
-                setitem(res)
-            })
-    }, [id])
+        const db = getFirestore();
+        const prod = doc(db, "products", id);
+        getDoc(prod).then((snapShot) => {
+            if (snapShot) {
+                setItem({id:snapShot.id, ...snapShot.data()});
+            } else {
+                console.log("el producto no existe");
+            }
+        });
+        setSpinner(false);
+    }, [id]);
 
     return (
         <div className="container">
-            <ItemDetail item={item} />
+            {spinner ? <Spinner /> : <ItemDetail item={item} />}
         </div>
     )
 }
