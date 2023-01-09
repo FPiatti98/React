@@ -5,21 +5,25 @@ const ItemCount = ({stock, initial, onAdd}) => {
 
     //Esta funcion se encarga del montaje del contador de cantidad para cada item y del boton Agregar al carrito
 
-    const [contador, setcontador] = useState(parseInt(1));
+    const [contador, setContador] = useState(parseInt(1));
     const [itemStock, setitemStock] = useState(stock);
     const [sold, setSold] = useState(false)
 
-    const increment = () => {
-        contador < itemStock ? setcontador(contador + 1) : setcontador(contador = itemStock) 
+    const decrement = () => {
+        if (contador > 1) {
+            setContador(contador - 1);
+        }
     }
 
-    const decrement = () => {
-        contador > initial? setcontador(contador - 1) : setcontador(contador = initial )
+    const increment = () => {
+        if (contador < itemStock) {
+            setContador(contador + 1);
+        }
     }
 
     const addToCart = (quantity) =>{
         if (contador <= itemStock) {
-            setcontador(1);
+            setContador(1);
             setitemStock(itemStock-quantity);
             setSold(true);
             onAdd(quantity);
