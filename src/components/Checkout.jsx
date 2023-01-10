@@ -83,7 +83,6 @@ const Checkout = () => {
                         <label for="email" className="form-label">Email</label>
                         <input type="text" className="form-control" id="email" placeholder="Ingrese su Email" onInput={(e) => {setEmail(e.target.value)}} />
                     </div>
-                    <button type="button" className="btn btn-danger" onClick={generateOrder}>Siguiente</button>
                 </form>
             </div>
             <div className="col-md-6 my-5">
@@ -106,6 +105,7 @@ const Checkout = () => {
                         </tr>
                     </tbody>
                 </table>    
+                <button type="button" className="btn btn-danger" onClick={generateOrder}>Generar Orden</button>
             </div>
         </div>
         <div className="row">

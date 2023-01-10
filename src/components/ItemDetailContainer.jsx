@@ -18,11 +18,12 @@ const ItemDetailContainer = () => {
         getDoc(prod).then((snapShot) => {
             if (snapShot) {
                 setItem({id:snapShot.id, ...snapShot.data()});
+                setSpinner(false);
             } else {
                 console.log("el producto no existe");
+                setSpinner(false);
             }
         });
-        setSpinner(false);
     }, [id]);
 
     return (

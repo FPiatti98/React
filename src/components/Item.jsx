@@ -11,7 +11,7 @@ const Item = ({product}) => {
                 <img src={product.image} className="card-img-top productImg" alt="card-img-top"></img>
                 <div className="card-body text-light">
                     <h5 className="card-title">{product.name}</h5>
-                    <p className="card-text">Precio :{product.price}</p>
+                    <p className="card-text">Precio: ${product.price}</p>
                     <p className="card-text">Items en stock : {product.stock}</p>
                 </div>
             </Link>
